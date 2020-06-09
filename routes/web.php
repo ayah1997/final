@@ -20,7 +20,6 @@ Route::get('/', function () {
 Route::get('/product','ProductController@index')->name('index');
 Route::get('/create','ProductController@create')->name('create');
 Route::post('/store','ProductController@store')->name('store');
-Route::get('/{product}/edit','ProductController@edit')->name('edite');
-Route::post('/update/{product}','ProductController@update')->name('update');
-Route::get('delete/{id}','ProductController@destroy')->name('delete');
-
+Route::put('/{product}/edit','ProductController@edit')->name('edit');
+Route::patch('/update/{product}','ProductController@update')->name('update');
+Route::delete('delete/{id}','ProductController@destroy');

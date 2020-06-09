@@ -16,34 +16,38 @@ class ProductController extends Controller
      }
      public function create(){
        
-        return view('product.create');
+        return view('product.final');
     }
     public function store(Request $request){
        $request->validate([
-       'userTitle'=>'required',
-       'userDescription'=>'required',
-       'userPrice'=>'required',
+       'title'=>'required',
+       'description'=>'required',
+       'price'=>'required',
        ]);
        $product= new Product();
-       $product->Title=$request->userTitle;
-       $product->Description=$request->userDescription;
-       $product->Price=$request->userPrice;
+       $product->Title=$request->title;
+       $product->Description=$request->description;
+       $product->Price=$request->price;
+       
        $product->save();
        return redirect()->back();
    }
-   public function edit(Product $product){
-      // $product = Product::findOrFail($id);
-       return view('product.create',compact('product'));
+   public function edit(Contact $contact){
+     //  $product = Product::findOrFail($id);
+       return view('product.final',compact('product'));
    }
-   public function update(Request $request,Product $product){
-       $request->validate([
-        'userTitle'=>'required',
-        'userDescription'=>'required',
-        'userPrice'=>'required',
-           ]);
-           $product->Title=$request->userTitle;
-           $product->Description=$request->userDescription;
-           $product->Price=$request->userPrice;
+   public function update(Request $request,Contact $contact){
+    $request->validate([
+
+    'title'=>'required',
+    'description'=>'required',
+    'price'=>'required',
+    ]);
+         // $product = Product::findOrFail($id);
+
+    $product->title=$request->title;
+    $product->description=$request->description;
+    $product->price=$request->price;
            $product->save();
             return redirect('/product');
 
@@ -53,6 +57,7 @@ class ProductController extends Controller
 
  
         $product=Product::find($id);
+     //   DB::table('tasks')->where('id','=',$id)->delete();
        $product->delete($id);
          return redirect('/product');
          
